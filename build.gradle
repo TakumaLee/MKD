@@ -8,6 +8,7 @@ buildscript {
         paging_version = '2.1.2'
         dagger_version = '2.27'
         glide_version = '4.11.0'
+        rxjava_version = '3.0.2'
     }
     repositories {
         google()
