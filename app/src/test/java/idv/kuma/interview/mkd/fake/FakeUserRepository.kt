@@ -6,11 +6,11 @@ import idv.kuma.interview.mkd.repository.UserRepoProvider
 class FakeUserRepository : UserRepoProvider {
     override fun fetchUserList(callback: (List<User>) -> Unit) {
         callback(arrayListOf(
-            User(),
-            User(),
-            User(),
-            User(),
-            User()
+            User(0, "", "", "", "", false),
+            User(1, "", "", "", "", false),
+            User(2, "", "", "", "", false),
+            User(3, "", "", "", "", false),
+            User(4, "", "", "", "", false)
         ))
     }
 }
