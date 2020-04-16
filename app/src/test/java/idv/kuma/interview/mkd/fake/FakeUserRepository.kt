@@ -4,7 +4,8 @@ import idv.kuma.interview.mkd.data.User
 import idv.kuma.interview.mkd.repository.UserRepoProvider
 
 class FakeUserRepository : UserRepoProvider {
-    override fun fetchUserList(callback: (List<User>) -> Unit) {
+
+    override fun fetchUserList(since: Int, perPage: Int, callback: (List<User>) -> Unit) {
         callback(arrayListOf(
             User(0, "", "", "", "", false),
             User(1, "", "", "", "", false),

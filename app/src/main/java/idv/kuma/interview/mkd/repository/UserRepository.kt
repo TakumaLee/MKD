@@ -25,8 +25,8 @@ class UserRepository(okHttpClient: OkHttpClient) : UserRepoProvider {
         userApi = retrofit.create(GithubUserApi::class.java)
     }
 
-    override fun fetchUserList(callback: (List<User>) -> Unit) {
-        userApi.fetchUsers(100)
+    override fun fetchUserList(since: Int, perPage:Int, callback: (List<User>) -> Unit) {
+        userApi.fetchUsers(since = since, perPage = perPage)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSuccess {

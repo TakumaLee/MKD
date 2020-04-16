@@ -9,5 +9,5 @@ import retrofit2.http.Query
 
 interface GithubUserApi {
     @GET("/users")
-    fun fetchUsers(@Query("since") since: Int): Single<Response<String>>
+    fun fetchUsers(@Query("since") since: Int, @Query("per_page") perPage: Int): Single<Response<String>>
 }

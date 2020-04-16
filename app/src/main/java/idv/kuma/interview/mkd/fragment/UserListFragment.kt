@@ -23,7 +23,6 @@ class UserListFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        userViewModel.fetchUserList()
     }
 
     override fun onCreateView(
@@ -37,16 +36,25 @@ class UserListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         with(recyclerUserList) {
-            adapter = UserListAdapter(userViewModel.userList.value ?: emptyList())
+            adapter = UserListAdapter(userViewModel.userList.value ?: emptyList(), true) { loadMore() }
             layoutManager = LinearLayoutManager(view.context, LinearLayoutManager.VERTICAL, false)
             addItemDecoration(SpaceItemDecoration())
         }
 
+        userViewModel.since.observe(viewLifecycleOwner, Observer {
+            (recyclerUserList.adapter as UserListAdapter).loadmore = userViewModel.isLimited()
+            recyclerUserList.adapter?.notifyItemChanged(recyclerUserList.adapter?.itemCount ?: 0)
+        })
+
         userViewModel.userList.observe(viewLifecycleOwner, Observer {
             (recyclerUserList.adapter as UserListAdapter).userList = it
-            recyclerUserList.adapter?.notifyItemRangeChanged(0, it.size)
+            recyclerUserList.adapter?.notifyItemRangeChanged(userViewModel.since.value ?: 0, it.size + 1)
 
         })
+    }
+
+    fun loadMore() {
+        userViewModel.fetchUserList()
     }
 
 }

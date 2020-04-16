@@ -30,8 +30,11 @@ class UserViewModelTest {
     @Test
     fun `test user size`() {
         assertEquals(0, userViewModel.userList.value?.size)
+        assertEquals(0, userViewModel.since)
         userViewModel.fetchUserList()
         assertEquals(5, userViewModel.userList.value?.size)
+        assertEquals(5
+            , userViewModel.since)
     }
 
 }
