@@ -3,11 +3,13 @@ package idv.kuma.interview.mkd.fragment.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import idv.kuma.interview.mkd.GlideApp
 import idv.kuma.interview.mkd.GlideOptions
 import idv.kuma.interview.mkd.R
 import idv.kuma.interview.mkd.data.User
+import idv.kuma.interview.mkd.fragment.UserListFragmentDirections
 import kotlinx.android.synthetic.main.adapter_user_list.view.*
 
 class UserListAdapter(var userList: List<User>, var loadmore: Boolean, val callback: () -> Unit) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -68,6 +70,10 @@ class UserListAdapter(var userList: List<User>, var loadmore: Boolean, val callb
                     View.VISIBLE
                 } else {
                     View.GONE
+                }
+                holder.itemView.setOnClickListener {
+                    val action = UserListFragmentDirections.actionUserListFragmentToUserDetailFragment(userList[position].login)
+                    it.findNavController().navigate(action)
                 }
             }
             else -> {
