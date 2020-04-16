@@ -6,6 +6,9 @@ class User(
     val url: String,
     val htmlUrl: String,
     val avatarUrl: String,
-    val siteAdmin: Boolean
+    val siteAdmin: Boolean,
+    val name: String = "",
+    val blog: String = "",
+    val location: String = ""
 ) {
 }

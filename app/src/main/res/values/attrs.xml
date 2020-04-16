@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="UserDetailItem">
+        <attr name="udiIcon" format="reference" />
+        <attr name="udiSiteAdmin" format="boolean" />
+        <attr name="udiIsWeb" format="boolean" />
+        <attr name="udiTitle" format="reference|string" />
+    </declare-styleable>
+
+</resources>

@@ -3,6 +3,7 @@ package idv.kuma.interview.mkd
 import android.app.Application
 import idv.kuma.interview.mkd.repository.UserRepoProvider
 import idv.kuma.interview.mkd.repository.UserRepository
+import idv.kuma.interview.mkd.viewmodel.UserDetailViewModel
 import idv.kuma.interview.mkd.viewmodel.UserViewModel
 import okhttp3.OkHttpClient
 import org.koin.android.ext.koin.androidContext
@@ -36,5 +37,8 @@ val appModule = module {
     }
     viewModel {
         UserViewModel(get())
+    }
+    viewModel {
+        UserDetailViewModel(get())
     }
 }

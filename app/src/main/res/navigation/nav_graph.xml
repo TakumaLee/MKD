@@ -8,5 +8,17 @@
     <fragment
         android:id="@+id/userListFragment"
         android:name="idv.kuma.interview.mkd.fragment.UserListFragment"
-        android:label="UserListFragment" />
+        android:label="UserListFragment" >
+        <action
+            android:id="@+id/action_userListFragment_to_userDetailFragment"
+            app:destination="@id/userDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/userDetailFragment"
+        android:name="idv.kuma.interview.mkd.fragment.UserDetailFragment"
+        android:label="UserDetailFragment" >
+        <argument
+            android:name="username"
+            app:argType="string" />
+    </fragment>
 </navigation>

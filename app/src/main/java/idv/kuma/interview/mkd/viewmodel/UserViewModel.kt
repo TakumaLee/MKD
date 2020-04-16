@@ -31,4 +31,8 @@ class UserViewModel(val userProvider: UserRepoProvider) : ViewModel() {
 
     fun isLimited() = since.value ?: 0 < LIMITED_USERS
 
+    fun fetchUserDetail() {
+
+    }
+
 }

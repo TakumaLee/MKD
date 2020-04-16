@@ -6,6 +6,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import okhttp3.OkHttpClient
 import org.json.JSONArray
+import org.json.JSONObject
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
@@ -54,7 +55,32 @@ class UserRepository(okHttpClient: OkHttpClient) : UserRepoProvider {
             .subscribe()
     }
 
-    private fun onError() {
-
+    override fun fetchUserDetail(username: String, callback: (User) -> Unit) {
+        userApi.fetchUserDetail(username)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnSuccess {
+                Log.d(TAG, "${it.body()}")
+                val jsonObject = JSONObject(it.body())
+                callback(
+                    User(
+                        jsonObject.getInt("id"),
+                        jsonObject.getString("login"),
+                        jsonObject.getString("url"),
+                        jsonObject.getString("html_url"),
+                        jsonObject.getString("avatar_url"),
+                        jsonObject.getBoolean("site_admin"),
+                        jsonObject.getString("name"),
+                        jsonObject.getString("blog"),
+                        jsonObject.getString("location")
+                    )
+                )
+            }
+            .doOnError {
+                Log.d(TAG, "$it")
+            }
+            .subscribe()
     }
+
+
 }
