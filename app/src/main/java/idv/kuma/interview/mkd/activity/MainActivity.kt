@@ -1,7 +1,10 @@
-package idv.kuma.interview.mkd
+package idv.kuma.interview.mkd.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import idv.kuma.interview.mkd.R
+import idv.kuma.interview.mkd.viewmodel.UserViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {
 
