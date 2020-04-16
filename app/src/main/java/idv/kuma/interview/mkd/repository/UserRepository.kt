@@ -30,7 +30,7 @@ class UserRepository(okHttpClient: OkHttpClient) : UserRepoProvider {
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSuccess {
-                Log.d(TAG, "${it.body()}")
+//                Log.d(TAG, "${it.body()}")
                 val userList: MutableList<User> = mutableListOf()
                 val jsonArray = JSONArray(it.body())
                 for (i in 0 until jsonArray.length()) {
@@ -40,8 +40,8 @@ class UserRepository(okHttpClient: OkHttpClient) : UserRepoProvider {
                             jsonObject.getInt("id"),
                             jsonObject.getString("login"),
                             jsonObject.getString("url"),
-                            jsonObject.getString("login"),
                             jsonObject.getString("html_url"),
+                            jsonObject.getString("avatar_url"),
                             jsonObject.getBoolean("site_admin")
                         )
                     )
